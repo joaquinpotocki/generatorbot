@@ -1,11 +1,11 @@
 import { makeStyles, Paper } from '@material-ui/core';
 import React from 'react'
 
-const Options = () => {
+const Options = ({option}) => {
     const classes = useStyle(); //Iniciamos el hook
     return (
         <Paper className={classes.trellocard}>
-            Options
+            {card.title}
         </Paper>
     )
 }

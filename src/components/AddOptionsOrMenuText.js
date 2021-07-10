@@ -2,26 +2,50 @@ import { Paper, IconButton, InputBase, Button, makeStyles, fade } from "@materia
 import { useState } from "react";
 import ClearIcon from "@material-ui/icons/Clear";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import { SettingsInputComponent } from "@material-ui/icons";
+import contextAPI from "../contextAPI";
 
 
-const AddOptionsOrMenuText = () => {
+const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
     const [title, setTitle] = useState("");
-    const classes = useStyle(); 
+    const classes = useStyle();
+    const { addOption, addMenu } = useContext(contextAPI)
+
+    const handleAddOptionOrMenu = () => {
+        if (type === "option") {
+            addOption(title, menuId)
+        } else {
+            addMenu(title)
+        }
+        setTitle("")
+        setOpen(false)
+    }
     return (
         <>
             <Paper className={classes.card}>
                 <InputBase
                     multiline
                     value={title}
+                    onBlur={() => setOpen(false)}
                     onChange={e => setTitle(e.target.value)}
-                    placeholder="Enter a title for this option.."
+                    placeholder={
+                        type === "option" ?
+                            "Enter a title for this option.." :
+                            "Enter menu title"
+                    }
                     inputProps={{ className: classes.input }}
                 />
             </Paper>
             <div className={classes.confirm}>
                 <div className={classes.options}>
-                    <Button className={classes.btnConfirm}>Add option</Button>
-                    <IconButton>
+                    <Button className={classes.btnConfirm} onClick={handleAddOptionOrMenu}>
+                        {
+                            type == "option" ? "Add option" :
+                                "Add menu"
+                        }
+
+                    </Button>
+                    <IconButton onClick={() => setOpen(false)}>
                         <ClearIcon />
                     </IconButton>
                 </div>
@@ -37,7 +61,7 @@ const AddOptionsOrMenuText = () => {
 const useStyle = makeStyles(theme => ({
     card: { //Creamos un objeto para diseniar con el hook
         width: "280px",
-        marginTop: theme.spacing(0, 1, 1, 1),
+        margin: theme.spacing(0, 1, 1, 1),
         paddingBotton: theme.spacing(4)
     },
     input: {
