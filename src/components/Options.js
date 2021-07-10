@@ -5,7 +5,7 @@ const Options = ({option}) => {
     const classes = useStyle(); //Iniciamos el hook
     return (
         <Paper className={classes.trellocard}>
-            {card.title}
+            {option.title}
         </Paper>
     )
 }

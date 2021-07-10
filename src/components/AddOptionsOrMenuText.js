@@ -1,9 +1,9 @@
 import { Paper, IconButton, InputBase, Button, makeStyles, fade } from "@material-ui/core";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ClearIcon from "@material-ui/icons/Clear";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { SettingsInputComponent } from "@material-ui/icons";
-import contextAPI from "../contextAPI";
+import contextAPI from "../ContextAPI";
 
 
 const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {

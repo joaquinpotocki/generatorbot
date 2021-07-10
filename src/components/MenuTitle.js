@@ -1,6 +1,7 @@
-import { makeStyles, Typography } from "@material-ui/core"
+import { InputBase, makeStyles, Typography } from "@material-ui/core"
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import contextAPI from "../contextAPI";
+import { useContext, useState } from "react";
+import contextAPI from "../ContextAPI";
 
 const MenuTitle = (menu, menuId) => {
     const classes = useStyle(); //Iniciamos el hook
@@ -25,7 +26,7 @@ const MenuTitle = (menu, menuId) => {
                 />
             ) : (
                 <div className={classes.title}>
-                    <Typography className={classes.titleText} onClick={()=>setOpne(true)}>
+                    <Typography className={classes.titleText} onClick={()=>setOpen(true)}>
                         {menu}
                     </Typography>
                     <MoreHorizIcon />

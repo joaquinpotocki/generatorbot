@@ -3,16 +3,20 @@ import './App.css';
 import AddOptionsOrMenu from "./components/AddOptionsOrMenu";
 import AddOptionsOrMenuText from "./components/AddOptionsOrMenuText";
 import MenuList from './components/MenuList';
-import ContextAPI from "./ContextAPI";
 import uuid from "react-uuid"
-import mockdata from ".mockdata.js"
+import mockData from "./mockdata.js"
+import ContextAPI from "./ContextAPI";
+import { useState } from "react";
+
 
 function App() {
   const classes = useStyle(); //Iniciamos el hook
-  const [data, setData] = useState(mockdata);
+  const [data, setData] = useState(mockData);
+  console.log("data");
+  console.log(data);
 
   const updateMenuTitle = (updatedTitle, menuId) => {
-    const list = data.menus[menuId]
+    const menu = data.menus[menuId]
     menu.menu = updateMenuTitle
     setData({
       ...data, //deja todo el objeto igual
@@ -49,8 +53,8 @@ function App() {
         <div className={classes.container}>
           {
             data.menuIds.map(menuID => {
-              const menu = menus[menuID]
-              return <MenuList menu={menu} key={menuID} />
+              const menu = data.menus[menuID]
+              return <MenuList menu={menu} key={menuID}/>
             })
           }
 

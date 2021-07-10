@@ -1,5 +1,5 @@
 import { Paper, CssBaseline, makeStyles } from "@material-ui/core";
-import contextAPI from "../contextAPI";
+import contextAPI from "../ContextAPI.js";
 import AddOptionsOrMenu from "./AddOptionsOrMenu";
 import MenuTitle from "./MenuTitle";
 import Options from "./Options";
