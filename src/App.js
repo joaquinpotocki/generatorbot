@@ -7,6 +7,7 @@ import uuid from "react-uuid"
 import mockData from "./mockdata.js"
 import ContextAPI from "./ContextAPI";
 import { useState } from "react";
+import background_image from "./images/whatsapp-wallpaper.jpg";
 
 
 function App() {
@@ -89,9 +90,11 @@ function App() {
 const useStyle = makeStyles(theme => ({
   root: { //Creamos un objeto para diseniar con el hook
     minHeight: "100vh",
-    overflowY: "auto"
+    overflowY: "auto",
+    backgroundImage : `url(${background_image})`
   },
   container: {
+    padding :"15% 5% 15% ",
     display: "flex",
   }
 }))

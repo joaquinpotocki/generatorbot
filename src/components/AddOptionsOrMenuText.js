@@ -26,12 +26,12 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
                 <InputBase
                     multiline
                     value={title}
-                    onBlur={() => setOpen(false)}
+                    //onBlur={() => setOpen(false)}
                     onChange={e => setTitle(e.target.value)}
                     placeholder={
                         type === "option" ?
-                            "Enter a title for this option.." :
-                            "Enter menu title"
+                            "Escriba la opcion" :
+                            "Escriba la consigna"
                     }
                     inputProps={{ className: classes.input }}
                 />
@@ -40,8 +40,8 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
                 <div className={classes.options}>
                     <Button className={classes.btnConfirm} onClick={handleAddOptionOrMenu}>
                         {
-                            type == "option" ? "Add option" :
-                                "Add menu"
+                            type == "option" ? "Agregar opcion" :
+                                "Agregar Consigna"
                         }
 
                     </Button>
@@ -61,7 +61,7 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
 const useStyle = makeStyles(theme => ({
     card: { //Creamos un objeto para diseniar con el hook
         width: "280px",
-        margin: theme.spacing(0, 1, 1, 1),
+        margin: theme.spacing(1, 1, 1, 1),
         paddingBotton: theme.spacing(4)
     },
     input: {
