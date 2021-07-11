@@ -3,10 +3,10 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { useContext, useState } from "react";
 import contextAPI from "../ContextAPI";
 
-const MenuTitle = (menu, menuId) => {
+const MenuTitle = ({title, menuId}) => {
     const classes = useStyle(); //Iniciamos el hook
     const [open, setOpen] = useState(false)
-    const [newTitle, setNewtitle] = useState("Pendiente")
+    const [newTitle, setNewtitle] = useState(title)
     const {updateMenuTitle} = useContext(contextAPI)
  
     const handleBlur = () => {
@@ -27,7 +27,7 @@ const MenuTitle = (menu, menuId) => {
             ) : (
                 <div className={classes.title}>
                     <Typography className={classes.titleText} onClick={()=>setOpen(true)}>
-                        {menu}
+                        {title}
                     </Typography>
                     <MoreHorizIcon />
                 </div>)

@@ -6,33 +6,31 @@ const mockData = {
             options: [{
                 id: "01opcion",
                 title: "opcion1"
-            }, {
-                "menu02": {
-                    id: "menu02",
-                    title: "consigna2"
-                },
-            },
+            }, 
+            {
+                id: "02opcion",
+                title: "opcion2"
+            }
             ]
         
         },
         "02menu": {
             id: "02menu",
-            title: "consigna1",
+            title: "consigna2",
             options: [{
                 id: "01opcion",
                 title: "opcion1"
-            }, {
-                "menu02": {
-                    id: "menu02",
-                    title: "consigna2"
-                },
-            },
+            }, 
+            {
+                id: "02opcion",
+                title: "opcion2"
+            }
             ]
         
         },
 
     },
-    menuIds: ["menu01","menu02"]
+    menuIds: ["01menu","02menu"]
 }
 
 export default mockData

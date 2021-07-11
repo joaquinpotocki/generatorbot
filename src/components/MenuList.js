@@ -1,4 +1,4 @@
-import { Paper, CssBaseline, makeStyles } from "@material-ui/core";
+import { Paper, CssBaseline, makeStyles, List } from "@material-ui/core";
 import contextAPI from "../ContextAPI.js";
 import AddOptionsOrMenu from "./AddOptionsOrMenu";
 import MenuTitle from "./MenuTitle";
@@ -11,13 +11,14 @@ const MenuList = ({ menu }) => {
 
         <Paper className={classes.root}>
             <CssBaseline />
-            <MenuTitle />
+            <MenuTitle title={menu.title} menuId = {menu.id}/>
             {
-                menu.options.map(option => (
-                    <Options oprion={option} key={option.id} />
+                menu.options.map(option => (                
+                <Options option={option} key={option.id} />
                 ))
+                
             }
-            <AddOptionsOrMenu type="option" menu={menu.id} />
+            <AddOptionsOrMenu type="option" menuId={menu.id} />
         </Paper>
     )
 }

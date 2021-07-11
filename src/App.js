@@ -12,12 +12,10 @@ import { useState } from "react";
 function App() {
   const classes = useStyle(); //Iniciamos el hook
   const [data, setData] = useState(mockData);
-  console.log("data");
-  console.log(data);
-
+ 
   const updateMenuTitle = (updatedTitle, menuId) => {
-    const menu = data.menus[menuId]
-    menu.menu = updateMenuTitle
+    const menu = data.menus[menuId];
+    menu.title = updatedTitle;
     setData({
       ...data, //deja todo el objeto igual
       menus: { //pero de los menus cambia lo siguiente
@@ -45,7 +43,22 @@ function App() {
       }
     })
   }
-  const addMenu = () => { }
+  const addMenu = (title) => { 
+    //Generar id para menu nuevo
+    const newMenuId = uuid();
+    setData({
+      menuIds : [...data.menuIds, newMenuId],
+      menus:{
+        ...data.menus,
+        [newMenuId]:{
+          id: newMenuId,
+          title,
+          options:[]  
+        }
+      }
+    })
+
+  }
 
   return (
     <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu }}>
@@ -53,7 +66,9 @@ function App() {
         <div className={classes.container}>
           {
             data.menuIds.map(menuID => {
+              
               const menu = data.menus[menuID]
+              
               return <MenuList menu={menu} key={menuID}/>
             })
           }
