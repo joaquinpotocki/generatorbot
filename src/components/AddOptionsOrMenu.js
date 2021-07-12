@@ -10,6 +10,7 @@ const AddOptionsOrMenu = ({ type, menuId }) => {
 
     return (
         <div className={classes.root}>
+            <Paper>
             <Collapse in={open}>
                 <AddOptionsOrMenuText type={type} menuId={menuId} setOpen={setOpen} />
             </Collapse>
@@ -18,14 +19,16 @@ const AddOptionsOrMenu = ({ type, menuId }) => {
                     <Typography>
                         {
                             type === "option" ?
-                                "+ Add opciones" :
-                                "+ Add otra consigna"
+                                "+ Agregar opciones" :
+                                "+ Agregar otra consigna"
                         }
 
                     </Typography>
                 </Paper>
 
             </Collapse>
+            </Paper>
+           
         </div>
     )
 }
@@ -38,12 +41,11 @@ const useStyle = makeStyles(theme => ({
     },
     addOptionsListText: {
         padding: theme.spacing(1, 1, 1, 2),
-        margin: theme.spacing(0, 1, 1, 1),
+        margin: theme.spacing(1, 1, 1, 1),
         background: "#ebecf0",
         "&:hover": {
             backgroundColor: fade("#000", 0.25)
         }
-
     }
 }))
 
