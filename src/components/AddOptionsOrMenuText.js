@@ -30,8 +30,8 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
                     onChange={e => setTitle(e.target.value)}
                     placeholder={
                         type === "option" ?
-                            "Enter a title for this option.." :
-                            "Enter menu title"
+                            "Ingrese un titulo para la opcion.." :
+                            "Ingrese un titulo para el menu"
                     }
                     inputProps={{ className: classes.input }}
                 />
@@ -40,7 +40,7 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
                 <div className={classes.options}>
                     <Button className={classes.btnConfirm} onClick={handleAddOptionOrMenu}>
                         {
-                            type == "option" ? "Add option" :
+                            type == "option" ? "Add opcion" :
                                 "Add menu"
                         }
 

@@ -18,8 +18,8 @@ const AddOptionsOrMenu = ({ type, menuId }) => {
                     <Typography>
                         {
                             type === "option" ?
-                                "+ Add Options" :
-                                "+ Add another menu"
+                                "+ Add opciones" :
+                                "+ Add otra consigna"
                         }
 
                     </Typography>
