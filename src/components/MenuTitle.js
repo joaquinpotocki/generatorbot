@@ -1,9 +1,10 @@
-import { InputBase, makeStyles, Typography } from "@material-ui/core"
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import { IconButton, InputBase, makeStyles, Typography } from "@material-ui/core"
+import ClearIcon from "@material-ui/icons/Clear";
+
 import { useContext, useState } from "react";
 import contextAPI from "../ContextAPI";
 
-const MenuTitle = ({title, menuId}) => {
+const MenuTitle = ({title, menuId, handleDeleteMenu}) => {
     const classes = useStyle(); //Iniciamos el hook
     const [open, setOpen] = useState(false)
     const [newTitle, setNewtitle] = useState(title)
@@ -13,6 +14,9 @@ const MenuTitle = ({title, menuId}) => {
         updateMenuTitle(newTitle, menuId)
         setOpen(false)
     }
+    
+    
+
     return (
         <>
             {open ? (
@@ -29,7 +33,9 @@ const MenuTitle = ({title, menuId}) => {
                     <Typography className={classes.titleText} onClick={()=>setOpen(true)}>
                         {title}
                     </Typography>
-                    <MoreHorizIcon />
+                    <IconButton onClick={()=>{handleDeleteMenu(menuId)}}>
+                        <ClearIcon />
+                    </IconButton>
                 </div>)
             }
         </>
