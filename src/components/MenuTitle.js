@@ -46,7 +46,7 @@ const MenuTitle = ({ title, menuId, handleDeleteMenu }) => {
 const useStyle = makeStyles(theme => ({
     title: { //Creamos un objeto para diseniar con el hook
         display: "flex",
-        margin: theme.spacing(1,1)
+        margin: theme.spacing(1, 1)
     },
     titleText: {
         flexGrow: 1,
@@ -56,10 +56,9 @@ const useStyle = makeStyles(theme => ({
         margin: theme.spacing(1, 1)
     },
     input: {
-        flexGrow: 1,
+
         fontSize: "1.2rem",
         fontWight: "bold",
-        margin: theme.spacing(1),
         "$:focus": {
             background: "#ddd"
         }

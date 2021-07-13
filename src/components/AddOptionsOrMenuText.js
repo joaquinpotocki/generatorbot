@@ -47,10 +47,6 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
                         <ClearIcon />
                     </IconButton>
                 </div>
-
-                <IconButton>
-                    <MoreHorizIcon />
-                </IconButton>
             </div>
         </>
     )
