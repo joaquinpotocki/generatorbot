@@ -26,7 +26,7 @@ const MenuTitle = ({ title, menuId, handleDeleteMenu }) => {
                     onBlur={handleBlur}
                     autoFocus
                     fullWidth
-                    inoutProps={{ className: classes.input }}
+                    inputProps={{ className: classes.input }}
                 />
             ) : (
                 <div className={classes.title}>
@@ -58,7 +58,10 @@ const useStyle = makeStyles(theme => ({
     input: {
 
         fontSize: "1.2rem",
-        fontWight: "bold",
+        fontWeight: "bold",
+        padding: theme.spacing(1, 1, 1, 2),
+        margin: theme.spacing(1, 1),
+        
         "$:focus": {
             background: "#ddd"
         }
