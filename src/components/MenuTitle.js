@@ -4,18 +4,18 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { useContext, useState } from "react";
 import contextAPI from "../ContextAPI";
 
-const MenuTitle = ({title, menuId, handleDeleteMenu}) => {
+const MenuTitle = ({ title, menuId, handleDeleteMenu }) => {
     const classes = useStyle(); //Iniciamos el hook
     const [open, setOpen] = useState(false)
     const [newTitle, setNewtitle] = useState(title)
-    const {updateMenuTitle} = useContext(contextAPI)
- 
+    const { updateMenuTitle } = useContext(contextAPI)
+
     const handleBlur = () => {
         updateMenuTitle(newTitle, menuId)
         setOpen(false)
     }
-    
-    
+
+
 
     return (
         <>
@@ -30,10 +30,10 @@ const MenuTitle = ({title, menuId, handleDeleteMenu}) => {
                 />
             ) : (
                 <div className={classes.title}>
-                    <Typography className={classes.titleText} onClick={()=>setOpen(true)}>
+                    <Typography className={classes.titleText} onClick={() => setOpen(true)}>
                         {title}
                     </Typography>
-                    <IconButton onClick={()=>{handleDeleteMenu(menuId)}}>
+                    <IconButton onClick={() => { handleDeleteMenu(menuId) }}>
                         <ClearIcon />
                     </IconButton>
                 </div>)
@@ -46,16 +46,19 @@ const MenuTitle = ({title, menuId, handleDeleteMenu}) => {
 const useStyle = makeStyles(theme => ({
     title: { //Creamos un objeto para diseniar con el hook
         display: "flex",
-        margin: theme.spacing(1)
+        margin: theme.spacing(1,1)
     },
     titleText: {
         flexGrow: 1,
         fontSize: "1.2rem",
         fontWeight: "bold",
+        padding: theme.spacing(1, 1, 1, 2),
+        margin: theme.spacing(1, 1)
     },
     input: {
+        flexGrow: 1,
         fontSize: "1.2rem",
-        fontWight:"bold",
+        fontWight: "bold",
         margin: theme.spacing(1),
         "$:focus": {
             background: "#ddd"

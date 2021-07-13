@@ -1,47 +1,47 @@
-import { Paper, CssBaseline, makeStyles} from "@material-ui/core";
+import { Paper, CssBaseline, makeStyles } from "@material-ui/core";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import AddOptionsOrMenu from "./AddOptionsOrMenu";
 import MenuTitle from "./MenuTitle";
 import Options from "./Options";
 
 
-const MenuList = ({ menu, index, handleDeleteMenu}) => {
+const MenuList = ({ menu, index, handleDeleteMenu }) => {
     const classes = useStyle(); //Iniciamos el hook
     return (
-<Draggable draggableId={menu.id} index={index}>
-    {
-        (provided)=>(
-            <div {...provided.draggableProps} ref={provided.innerRef}>
-                <Paper className={classes.root} {...provided.dragHandleProps}>
-                    <CssBaseline />
-                    <MenuTitle title={menu.title} menuId = {menu.id} handleDeleteMenu={handleDeleteMenu}/>
-                    <Droppable droppableId={menu.id} >
-                        {
-                            (provided)=>(
-                                <div ref={provided.innerRef}{...provided.droppableProps }>
-                                {                                   
-                                    menu.options.map((option, index) => (                
-                                    <Options option={option} key={option.id} index={index} />
-                                    ))
-                                    
-                                }
-                                {provided.placeholder}
-                                 </div>
-                            )
-                        }
-                        
-                    </Droppable>
-                    
-                    <AddOptionsOrMenu type="option" menuId={menu.id} />
-                </Paper>
-            </div>
-        
-        )
-    }
-    
+        <Draggable draggableId={menu.id} index={index}>
+            {
+                (provided) => (
+                    <div {...provided.draggableProps} ref={provided.innerRef}>
+                        <Paper className={classes.root} {...provided.dragHandleProps}>
+                            <CssBaseline />
+                            <MenuTitle title={menu.title} menuId={menu.id} handleDeleteMenu={handleDeleteMenu} />
+                            <Droppable droppableId={menu.id} >
+                                {
+                                    (provided) => (
+                                        <div ref={provided.innerRef}{...provided.droppableProps}>
+                                            {
+                                                menu.options.map((option, index) => (
+                                                    <Options option={option} key={option.id} index={index} />
+                                                ))
 
-</Draggable>
-        
+                                            }
+                                            {provided.placeholder}
+                                        </div>
+                                    )
+                                }
+
+                            </Droppable>
+
+                            <AddOptionsOrMenu type="option" menuId={menu.id} />
+                        </Paper>
+                    </div>
+
+                )
+            }
+
+
+        </Draggable>
+
     )
 }
 

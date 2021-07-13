@@ -9,14 +9,14 @@ import { useState } from "react";
 import background_image from "./images/whatsapp-wallpaper.jpg";
 
 //Library react-beautiful-dnd -> drag and drop
-import {DragDropContext, Droppable} from 'react-beautiful-dnd'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
 
 
 function App() {
   const classes = useStyle(); //Iniciamos el hook
   const [data, setData] = useState(mockData);
- 
+
   const updateMenuTitle = (updatedTitle, menuId) => {
     const menu = data.menus[menuId];
     menu.title = updatedTitle;
@@ -46,17 +46,17 @@ function App() {
       }
     })
   }
-  const addMenu = (title) => { 
+  const addMenu = (title) => {
     //Generar id para menu nuevo
     const newMenuId = uuid();
     setData({
-      menuIds : [...data.menuIds, newMenuId],
-      menus:{
+      menuIds: [...data.menuIds, newMenuId],
+      menus: {
         ...data.menus,
-        [newMenuId]:{
+        [newMenuId]: {
           id: newMenuId,
           title,
-          options:[]  
+          options: []
         }
       }
     })
@@ -64,13 +64,13 @@ function App() {
   }
 
   //Funcion para drag and drop
-  const onDragEnd = (result) =>
-  {const {destination, destination:{ index:destIndex},  source:{ index: sourceIndex}, draggableId,type}=result;
+  const onDragEnd = (result) => {
+    const { destination, destination: { index: destIndex }, source: { index: sourceIndex }, draggableId, type } = result;
 
-if (!destination) {
-  return;
-  
-}
+    if (!destination) {
+      return;
+
+    }
     if (type === "list") {
       const newMenuIds = data.menuIds;
       newMenuIds.splice(sourceIndex, 1);
@@ -84,17 +84,15 @@ if (!destination) {
   }
 
   //delete Menu
-  const handleDeleteMenu=(menuId)=>{
-    data.menuIds.splice(menuId, 1)
-    
-    //actualizo el estado de la app
+  const handleDeleteMenu = (menuId) => {
+    data.menuIds.splice(menuId, 1);
     setData({
       ...data,//Manteneme todo lo que esta en data...
-      menuIds: data.menuIds//pero en menuIds actualizalo con el valor actual
+      menuIds: data.menuIds,//pero en menuIds actualizalo con el valor actual
+      menus: data.menus,//pero en menuIds actualizalo con el valor actual
     })
 
-    console.log(data.menus["62ee3a-86cf-fd6f-76e-aef835ecbfc"])
-}
+  }
 
   return (
     <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu }}>
@@ -102,32 +100,32 @@ if (!destination) {
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="12345" type="list" direction="horizontal">
             {
-              (provaided)=>(
+              (provaided) => (
                 <div className={classes.container} ref={provaided.innerRef}
-                {...provaided.droppableProps}
+                  {...provaided.droppableProps}
                 >
-                {
-                  data.menuIds.map((menuID, index) => {
-                    
-                    const menu = data.menus[menuID]
-                    
-                    return <MenuList menu={menu} key={menuID} index={index} handleDeleteMenu={handleDeleteMenu}/>
-                  })
-                }
-      
-                <div>
-                  <AddOptionsOrMenu type="menu" />
-                  {provaided.placeholder}
+                  {
+                    data.menuIds.map((menuID, index) => {
+
+                      const menu = data.menus[menuID]
+
+                      return <MenuList menu={menu} key={menuID} index={index} handleDeleteMenu={handleDeleteMenu} />
+                    })
+                  }
+
+                  <div>
+                    <AddOptionsOrMenu type="menu" />
+                    {provaided.placeholder}
+                  </div>
+
                 </div>
-      
-              </div>
               )
             }
-         
+
           </Droppable>
-       
+
         </DragDropContext>
-        
+
 
       </div>
     </ContextAPI.Provider>
@@ -140,13 +138,13 @@ const useStyle = makeStyles(theme => ({
   root: { //Creamos un objeto para diseniar con el hook
     minHeight: "100vh",
     overflowY: "auto",
-    backgroundImage : `url(${background_image})`,
-    backgroundPosition:'center',
+    backgroundImage: `url(${background_image})`,
+    backgroundPosition: 'center',
     backgroundSize: 'cover',
-    backgroundRepeat:'no-repeat'
+    backgroundRepeat: 'no-repeat'
   },
   container: {
-    padding :"15% 5% 15% ",
+    padding: "15% 5% 15% ",
     display: "flex",
   }
 }))
