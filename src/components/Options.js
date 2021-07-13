@@ -1,23 +1,21 @@
-import { makeStyles, IconButton, Paper } from '@material-ui/core';
+import { makeStyles, Paper } from '@material-ui/core';
 
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import React from 'react'
+import OptionModal from './OptionModal';
 
 
-const Options = ({ option }) => {
+const Options = ({ option , datos, menu}) => {
     const classes = useStyle(); //Iniciamos el hook
+
     return (
         <>
 
             <Paper className={classes.trellocard}>
                 <div className={classes.flexin}>
                     <div className={classes.growcito}>
-                        {option.title}
+                        {option.id}. {option.title}
                     </div>
 
-                    <IconButton>
-                        <MoreHorizIcon />
-                    </IconButton>
+                    <OptionModal datos = {datos} option= {option} menu = {menu}></OptionModal>
                 </div>
             </Paper>
 

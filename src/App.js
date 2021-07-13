@@ -16,6 +16,7 @@ import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 function App() {
   const classes = useStyle(); //Iniciamos el hook
   const [data, setData] = useState(mockData);
+  const [datos, setDatos] = useState([]);
  
   const updateMenuTitle = (updatedTitle, menuId) => {
     const menu = data.menus[menuId];
@@ -29,11 +30,16 @@ function App() {
     })
   }
   const addOption = (title, menuId) => {
-    const newOptionId = uuid(); //creamos un id unico para la nueva opcion
+    //crear id para option
+    const menucito = data.menus[menuId];
+    
+    const newOptionId =  String.fromCharCode(menucito.options.length + 65);//creamos un id unico para la nueva opcion
     //crear la opcion nueva
     const newOption = {
       id: newOptionId,
       title,
+      menuIdRedirect:"",
+      guardar:false
     }
     //anadir el newOption al array que tiene la lista
     const menu = data.menus[menuId]
@@ -62,6 +68,19 @@ function App() {
     })
 
   }
+  const updateDatos = () => {
+    const datos = [];
+    data.menuIds.map((menuID, index) => {
+                    
+      const menu = data.menus[menuID]
+      
+      datos.push(menu);
+
+      setDatos(datos)
+      return;
+    })
+  }
+
 
   //Funcion para drag and drop
   const onDragEnd = (result) =>
@@ -92,11 +111,13 @@ if (!destination) {
       ...data,//Manteneme todo lo que esta en data...
       menuIds: data.menuIds//pero en menuIds actualizalo con el valor actual
     })
+
+    updateDatos();
    
 }
 
   return (
-    <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu }}>
+    <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu}}>
       <div className={classes.root}>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="12345" type="list" direction="horizontal">
@@ -110,7 +131,7 @@ if (!destination) {
                     
                     const menu = data.menus[menuID]
                     
-                    return <MenuList menu={menu} key={menuID} index={index} handleDeleteMenu={handleDeleteMenu}/>
+                    return <MenuList menu={menu} key={menuID} index={index} handleDeleteMenu={handleDeleteMenu} datos={datos}/>
                   })
                 }
       

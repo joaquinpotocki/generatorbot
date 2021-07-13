@@ -1,5 +1,7 @@
 const mockData = {
-    menuIds: []
+    empresa:"",
+    menuIds: [],
+    menus: {}
 }
 
 export default mockData
