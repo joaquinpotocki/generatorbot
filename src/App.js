@@ -139,8 +139,6 @@ const useStyle = makeStyles(theme => ({
     minHeight: "100vh",
     overflowY: "auto",
     backgroundImage: `url(${background_image})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat'
   },
   container: {

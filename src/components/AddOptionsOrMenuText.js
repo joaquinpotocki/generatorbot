@@ -18,7 +18,6 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
             addMenu(title)
         }
         setTitle("")
-        setOpen(false)
     }
     return (
         <>
@@ -26,7 +25,6 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
                 <InputBase
                     multiline
                     value={title}
-                    //onBlur={() => setOpen(false)}
                     onChange={e => setTitle(e.target.value)}
                     placeholder={
                         type === "option" ?
