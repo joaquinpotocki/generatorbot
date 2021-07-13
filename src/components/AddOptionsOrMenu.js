@@ -1,4 +1,5 @@
-import { Collapse, fade, makeStyles, Paper, Typography } from "@material-ui/core";
+import { Collapse, makeStyles, Paper, Typography } from "@material-ui/core";
+import { alpha} from "@material-ui/core/styles";
 
 import { useState } from "react";
 import AddOptionsOrMenuText from "./AddOptionsOrMenuText";
@@ -44,7 +45,7 @@ const useStyle = makeStyles(theme => ({
         margin: theme.spacing(1, 1, 1, 1),
         background: "#ebecf0",
         "&:hover": {
-            backgroundColor: fade("#000", 0.25)
+            backgroundColor: alpha("#000", 0.25)
         }
     }
 }))

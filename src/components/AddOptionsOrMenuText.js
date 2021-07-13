@@ -1,8 +1,8 @@
-import { Paper, IconButton, InputBase, Button, makeStyles, fade } from "@material-ui/core";
+import { Paper, IconButton, InputBase, Button, makeStyles,  } from "@material-ui/core";
+import { alpha} from "@material-ui/core/styles";
 import { useContext, useState } from "react";
 import ClearIcon from "@material-ui/icons/Clear";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import { SettingsInputComponent } from "@material-ui/icons";
 import contextAPI from "../ContextAPI";
 
 
@@ -40,7 +40,7 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
                 <div className={classes.options}>
                     <Button className={classes.btnConfirm} onClick={handleAddOptionOrMenu}>
                         {
-                            type == "option" ? "Agregar opcion" :
+                            type === "option" ? "Agregar opcion" :
                                 "Agregar Consigna"
                         }
 
@@ -78,7 +78,7 @@ const useStyle = makeStyles(theme => ({
         background: "#5aac44",
         color: "#fff",
         "&:hover": {
-            background: fade("#5aac44", 0.75)
+            background: alpha("#5aac44", 0.75)
         }
     }
 

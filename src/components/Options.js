@@ -1,5 +1,4 @@
 import { makeStyles, Paper } from '@material-ui/core';
-import React from 'react'
 
 const Options = ({option}) => {
     const classes = useStyle(); //Iniciamos el hook
