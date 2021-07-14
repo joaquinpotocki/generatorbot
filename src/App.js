@@ -125,6 +125,21 @@ function App() {
 
   }
 
+    //delete Opcion
+    const handleDeleteOpcion = (menu, optionId) => {
+      data.menus.options.optionId.splice( data.menus.id.options.optionId.indexOf(optionId), 1)
+  
+      //actualizo el estado de la app
+      setData({
+        ...data,//Manteneme todo lo que esta en data...
+        menus: {
+            options: data.options
+        }
+      })
+  
+      updateDatos();
+  
+    }
   return (
     <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu }}>
       <div className={classes.root}>
@@ -140,7 +155,7 @@ function App() {
 
                       const menu = data.menus[menuID]
 
-                      return <MenuList menu={menu} key={menuID} index={index} handleDeleteMenu={handleDeleteMenu} datos={datos} updateOption={updateOption} />
+                      return <MenuList menu={menu} key={menuID} index={index} handleDeleteOpcion={handleDeleteOpcion} handleDeleteMenu={handleDeleteMenu} datos={datos} updateOption={updateOption} />
                     })
                   }
 
