@@ -5,7 +5,7 @@ import MenuTitle from "./MenuTitle";
 import Options from "./Options";
 
 
-const MenuList = ({ menu, index, handleDeleteMenu, datos }) => {
+const MenuList = ({ menu, index, updateOption, handleDeleteMenu, datos }) => {
     const classes = useStyle(); //Iniciamos el hook
     return (
         <Draggable draggableId={menu.id} index={index}>
@@ -21,7 +21,7 @@ const MenuList = ({ menu, index, handleDeleteMenu, datos }) => {
                                         <div ref={provided.innerRef}{...provided.droppableProps}>
                                             {
                                                 menu.options.map((option, index) => (
-                                                    <Options option={option} key={option.id} index={index} datos={datos} menu={menu}/>
+                                                    <Options option={option} key={option.id} index={index} datos={datos} menu={menu} updateOption={updateOption} />
                                                 ))
 
                                             }

@@ -3,7 +3,7 @@ import { makeStyles, Paper } from '@material-ui/core';
 import OptionModal from './OptionModal';
 
 
-const Options = ({ option , datos, menu}) => {
+const Options = ({ option , datos, menu, updateOption}) => {
     const classes = useStyle(); //Iniciamos el hook
 
     return (
@@ -15,7 +15,7 @@ const Options = ({ option , datos, menu}) => {
                         {option.id}. {option.title}
                     </div>
 
-                    <OptionModal datos = {datos} option= {option} menu = {menu}></OptionModal>
+                    <OptionModal datos = {datos} option= {option} menu = {menu} updateOption={updateOption} ></OptionModal>
                 </div>
             </Paper>
 

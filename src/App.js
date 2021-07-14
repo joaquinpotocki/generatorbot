@@ -9,7 +9,7 @@ import { useState } from "react";
 import background_image from "./images/whatsapp-wallpaper.jpg";
 
 //Library react-beautiful-dnd -> drag and drop
-import {DragDropContext, Droppable} from 'react-beautiful-dnd'
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
 
 
@@ -17,7 +17,7 @@ function App() {
   const classes = useStyle(); //Iniciamos el hook
   const [data, setData] = useState(mockData);
   const [datos, setDatos] = useState([]);
- 
+
   const updateMenuTitle = (updatedTitle, menuId) => {
     const menu = data.menus[menuId];
     menu.title = updatedTitle;
@@ -29,17 +29,49 @@ function App() {
       }
     })
   }
+
+  //update de los radios del modal
+  const updateOption = (menuIdRedirect) => {
+    console.log("menuIdRedirect")
+    console.log(menuIdRedirect)
+
+    // setDatos({
+    //   ...data,
+    //   menus: {
+    //     ...data.menus,
+    //     [menuId]: menu
+    //   }
+    // })
+
+  };
+
+
+  // const newMenuIdRedirect = {
+  //   menuIdRedirect: menuIdRedirect,
+  // }
+  // //anadir el newOption al array que tiene la lista
+
+  // menu.options = [...menu.options, newMenuIdRedirect]
+  // setData({
+  //   ...data,
+  //   menus: {
+  //     ...data.menus,
+
+  //   }
+  // })
+
+
   const addOption = (title, menuId) => {
     //crear id para option
     const menucito = data.menus[menuId];
-    
-    const newOptionId =  String.fromCharCode(menucito.options.length + 65);//creamos un id unico para la nueva opcion
+
+    const newOptionId = String.fromCharCode(menucito.options.length + 65);//creamos un id unico para la nueva opcion
     //crear la opcion nueva
     const newOption = {
       id: newOptionId,
       title,
-      menuIdRedirect:"",
-      guardar:false
+      menuIdRedirect: "",
+      guardar: false
     }
     //anadir el newOption al array que tiene la lista
     const menu = data.menus[menuId]
@@ -52,17 +84,17 @@ function App() {
       }
     })
   }
-  const addMenu = (title) => { 
+  const addMenu = (title) => {
     //Generar id para menu nuevo
     const newMenuId = uuid();
     setData({
-      menuIds : [...data.menuIds, newMenuId],
-      menus:{
+      menuIds: [...data.menuIds, newMenuId],
+      menus: {
         ...data.menus,
-        [newMenuId]:{
+        [newMenuId]: {
           id: newMenuId,
           title,
-          options:[]  
+          options: []
         }
       }
     })
@@ -71,9 +103,9 @@ function App() {
   const updateDatos = () => {
     const datos = [];
     data.menuIds.map((menuID, index) => {
-                    
+
       const menu = data.menus[menuID]
-      
+
       datos.push(menu);
 
       setDatos(datos)
@@ -83,13 +115,13 @@ function App() {
 
 
   //Funcion para drag and drop
-  const onDragEnd = (result) =>
-  {const {destination, destination:{ index:destIndex},  source:{ index: sourceIndex}, draggableId,type}=result;
+  const onDragEnd = (result) => {
+    const { destination, destination: { index: destIndex }, source: { index: sourceIndex }, draggableId, type } = result;
 
-if (!destination) {
-  return;
-  
-}
+    if (!destination) {
+      return;
+
+    }
     if (type === "list") {
       const newMenuIds = data.menuIds;
       newMenuIds.splice(sourceIndex, 1);
@@ -103,9 +135,9 @@ if (!destination) {
   }
 
   //delete Menu
-  const handleDeleteMenu=(menuId)=>{
+  const handleDeleteMenu = (menuId) => {
     data.menuIds.splice(data.menuIds.indexOf(menuId), 1)
-    
+
     //actualizo el estado de la app
     setData({
       ...data,//Manteneme todo lo que esta en data...
@@ -113,41 +145,40 @@ if (!destination) {
     })
 
     updateDatos();
-   
-}
+
+  }
 
   return (
-    <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu}}>
+    <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu }}>
       <div className={classes.root}>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="12345" type="list" direction="horizontal">
             {
-              (provaided)=>(
+              (provaided) => (
                 <div className={classes.container} ref={provaided.innerRef}
-                {...provaided.droppableProps}
+                  {...provaided.droppableProps}
                 >
-                {
-                  data.menuIds.map((menuID, index) => {
-                    
-                    const menu = data.menus[menuID]
-                    
-                    return <MenuList menu={menu} key={menuID} index={index} handleDeleteMenu={handleDeleteMenu} datos={datos}/>
-                  })
-                }
-      
-                <div>
-                  <AddOptionsOrMenu type="menu" />
-                  {provaided.placeholder}
+                  {
+                    data.menuIds.map((menuID, index) => {
+
+                      const menu = data.menus[menuID]
+
+                      return <MenuList menu={menu} key={menuID} index={index} handleDeleteMenu={handleDeleteMenu} datos={datos} updateOption={updateOption} />
+                    })
+                  }
+
+                  <div>
+                    <AddOptionsOrMenu type="menu" />
+                    {provaided.placeholder}
+                  </div>
                 </div>
-      
-              </div>
               )
             }
-         
+
           </Droppable>
-       
+
         </DragDropContext>
-        
+
 
       </div>
     </ContextAPI.Provider>
@@ -160,13 +191,13 @@ const useStyle = makeStyles(theme => ({
   root: { //Creamos un objeto para diseniar con el hook
     minHeight: "100vh",
     overflowY: "auto",
-    backgroundImage : `url(${background_image})`,
-    backgroundPosition:'center',
+    backgroundImage: `url(${background_image})`,
+    backgroundPosition: 'center',
     backgroundSize: 'cover',
-    backgroundRepeat:'no-repeat'
+    backgroundRepeat: 'no-repeat'
   },
   container: {
-    padding :"15% 5% 15% ",
+    padding: "15% 5% 15% ",
     display: "flex",
   }
 }))

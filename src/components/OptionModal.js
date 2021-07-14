@@ -9,9 +9,14 @@ import {FormControlLabel, IconButton, Radio, RadioGroup, Typography } from '@mat
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 
-const OptionModal=({datos, option, menu})=> {
+const OptionModal=({datos, option, menu, updateOption})=> {
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
+  //para el radio
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,8 +42,8 @@ const OptionModal=({datos, option, menu})=> {
         {
                   datos.map((menucito) => {  
                       if (menucito.id != menu.id) {
-                        return <RadioGroup>
-                                  <FormControlLabel value={menucito.id} control={<Radio />} label={menucito.title} />
+                        return <RadioGroup value={value} onChange={handleChange}>
+                                  <FormControlLabel value={menucito.id} control={<Radio />} label={menucito.title}  />
                                 </RadioGroup>
                       }                  
                     
@@ -48,8 +53,8 @@ const OptionModal=({datos, option, menu})=> {
                 }
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
+          <Button onClick={updateOption(value)} color="primary">
+            Aceptar
           </Button>
         </DialogActions>
       </Dialog>
