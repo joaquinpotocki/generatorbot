@@ -23,6 +23,8 @@ const OptionModal=({datos, option, menu, updateOption})=> {
   };
 
   const handleClose = () => {
+    console.log(value)
+    updateOption(value, menu.id, option.id)
     setOpen(false);
   };
 
@@ -53,7 +55,7 @@ const OptionModal=({datos, option, menu, updateOption})=> {
                 }
         </DialogContent>
         <DialogActions>
-          <Button onClick={updateOption(value)} color="primary">
+          <Button onClick={handleClose} color="primary">
             Aceptar
           </Button>
         </DialogActions>

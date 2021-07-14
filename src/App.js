@@ -31,35 +31,12 @@ function App() {
   }
 
   //update de los radios del modal
-  const updateOption = (menuIdRedirect) => {
-    console.log("menuIdRedirect")
-    console.log(menuIdRedirect)
+  const updateOption = (menuIdRedirect, menuId, optionId) => {
 
-    // setDatos({
-    //   ...data,
-    //   menus: {
-    //     ...data.menus,
-    //     [menuId]: menu
-    //   }
-    // })
-
-  };
-
-
-  // const newMenuIdRedirect = {
-  //   menuIdRedirect: menuIdRedirect,
-  // }
-  // //anadir el newOption al array que tiene la lista
-
-  // menu.options = [...menu.options, newMenuIdRedirect]
-  // setData({
-  //   ...data,
-  //   menus: {
-  //     ...data.menus,
-
-  //   }
-  // })
-
+    const option = data.menus[menuId].options[optionId.charCodeAt(0)-65]
+    option.menuIdRedirect= menuIdRedirect
+    
+  }
 
   const addOption = (title, menuId) => {
     //crear id para option
