@@ -4,6 +4,7 @@ import MenuList from "./components/MenuList";
 import DrawerLeft from "./components/DraweLeft";
 import uuid from "react-uuid";
 import mockData from "./mockdata.js";
+import mockData2 from "./mockdata2";
 import ContextAPI from "./ContextAPI";
 import { useState } from "react";
 import background_image from "./images/image.png";
@@ -14,9 +15,11 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 function App(props) {
   const classes = useStyle(); //Iniciamos el hook
   const [data, setData] = useState(mockData);
-  const [datos, setDatos] = useState([]);
+  const [datos, setDatos] = useState(mockData2);
 
-  data.empresa = props.location.state.empresa;
+  const empresaId = uuid();
+
+  const empresa = props.location.state.empresa;
 
   const updateMenuTitle = (updatedTitle, menuId) => {
     const menu = data.menus[menuId];
@@ -65,7 +68,7 @@ function App(props) {
     updateDatos();
   };
 
-  //Funcion para agregar un submenu 
+  //Funcion para agregar un submenu
   const addMenu = (title) => {
     //Generar id para menu nuevo
     const newMenuId = uuid();
@@ -83,21 +86,23 @@ function App(props) {
     updateDatos();
   };
 
-
   //Update de la variable definitiva a convertir en json para el bot
   //********************************************************************************************************************* */
   const updateDatos = () => {
-    const datos = [];
-    data.menuIds.map((menuID, index) => {
-      const menu = data.menus[menuID];
+    datos.empresa = empresa;
+    datos.idEmpresa = empresaId;
+    datos.menu = [];
 
-      datos.push(menu);
+    data.menuIds.map((menuID, index) => {
+      const subMenu = data.menus[menuID];
+
+      datos.menu.push(subMenu);
 
       setDatos(datos);
       return;
     });
-    console.log("Datos cargador y transformados a JSON - Objetos JSON")
-    console.log(JSON.stringify(datos))
+    console.log("Datos cargador y transformados a JSON - Objetos JSON");
+    console.log(JSON.stringify(datos));
   };
   //********************************************************************************************************************** */
 
@@ -171,6 +176,7 @@ function App(props) {
 
                   return (
                     <MenuList
+                      index={index}
                       menu={menu}
                       key={menuID}
                       index={index}

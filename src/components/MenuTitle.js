@@ -9,7 +9,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { useContext, useState } from "react";
 import contextAPI from "../ContextAPI";
 
-const MenuTitle = ({ title, menuId, handleDeleteMenu }) => {
+const MenuTitle = ({ title, menuId, handleDeleteMenu, index }) => {
   const classes = useStyle(); //Iniciamos el hook
   const [open, setOpen] = useState(false);
   const [newTitle, setNewtitle] = useState(title);
@@ -37,7 +37,7 @@ const MenuTitle = ({ title, menuId, handleDeleteMenu }) => {
             className={classes.titleText}
             onClick={() => setOpen(true)}
           >
-            {title}
+            {index}. {title}
           </Typography>
           <IconButton
             onClick={() => {

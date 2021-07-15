@@ -23,6 +23,7 @@ const MenuList = ({
               title={menu.title}
               menuId={menu.id}
               handleDeleteMenu={handleDeleteMenu}
+              index={index}
             />
             <Droppable droppableId={menu.id}>
               {(provided) => (
