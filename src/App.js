@@ -1,6 +1,7 @@
-import { makeStyles, Grid } from "@material-ui/core";
+import { makeStyles, Grid, Paper } from "@material-ui/core";
 import AddOptionsOrMenu from "./components/AddOptionsOrMenu";
 import MenuList from "./components/MenuList";
+import DrawerLeft from "./components/DraweLeft";
 import uuid from "react-uuid";
 import mockData from "./mockdata.js";
 import ContextAPI from "./ContextAPI";
@@ -140,6 +141,7 @@ function App(props) {
   };
   return (
     <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu }}>
+      <DrawerLeft data={data} setData={setData}></DrawerLeft>
       <div className={classes.root}>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="12345" type="list" direction="horizontal">
@@ -164,11 +166,8 @@ function App(props) {
                     />
                   );
                 })}
-
-                <div>
-                  <AddOptionsOrMenu type="menu" />
-                  {provaided.placeholder}
-                </div>
+                <div>{provaided.placeholder}</div>;
+                <AddOptionsOrMenu type="menu" />
               </div>
             )}
           </Droppable>
@@ -189,7 +188,7 @@ const useStyle = makeStyles((theme) => ({
     backgroundSize: "contain",
   },
   container: {
-    padding: "10%",
+    padding: "3% 0 0 10%",
     display: "flex",
   },
 }));

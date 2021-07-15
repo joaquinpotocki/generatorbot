@@ -36,7 +36,7 @@ const useStyle = makeStyles((theme) => ({
   root: {
     //Creamos un objeto para diseniar con el hook
     width: "400px",
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(1.5),
   },
   addOptionsListText: {
     padding: theme.spacing(1, 1, 1, 2),

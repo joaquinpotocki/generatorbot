@@ -1,13 +1,18 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
-import { FormControlLabel, IconButton, Radio, RadioGroup, Typography } from '@material-ui/core';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-
+import {
+  FormControlLabel,
+  IconButton,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@material-ui/core";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const OptionModal = ({ datos, option, menu, updateOption }) => {
   const [open, setOpen] = React.useState(false);
@@ -23,8 +28,8 @@ const OptionModal = ({ datos, option, menu, updateOption }) => {
   };
 
   const handleClose = () => {
-    console.log(value)
-    updateOption(value, menu.id, option.id)
+    console.log(value);
+    updateOption(value, menu.id, option.id);
     setOpen(false);
   };
 
@@ -35,24 +40,27 @@ const OptionModal = ({ datos, option, menu, updateOption }) => {
       </IconButton>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Opcion: {option.id}. {option.title}</DialogTitle>
+        <DialogTitle>
+          Opcion: {option.id}. {option.title}
+        </DialogTitle>
         <DialogContent>
           <Typography>
-            Al seleccionar la opcion {option.id}. {option.title},
-            ¿A cual de las siguientes consigna se debe redirigir?
+            Al seleccionar la opcion {option.id}. {option.title}, ¿A cual de las
+            siguientes consigna se debe redirigir?
           </Typography>
-          {
-            datos.map((menucito) => {
-              if (menucito.id != menu.id) {
-                return <RadioGroup value={value} onChange={handleChange}>
-                  <FormControlLabel value={menucito.id} control={<Radio />} label={menucito.title} />
+          {datos.map((menucito) => {
+            if (menucito.id !== menu.id) {
+              return (
+                <RadioGroup value={value} onChange={handleChange}>
+                  <FormControlLabel
+                    value={menucito.id}
+                    control={<Radio />}
+                    label={menucito.title}
+                  />
                 </RadioGroup>
-              }
-
-
-
-            })
-          }
+              );
+            }
+          })}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -65,4 +73,3 @@ const OptionModal = ({ datos, option, menu, updateOption }) => {
 };
 
 export default OptionModal;
-
