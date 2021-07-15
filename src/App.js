@@ -37,6 +37,7 @@ function App(props) {
     option.menuIdRedirect = menuIdRedirect;
   };
 
+  //Funcion para agregar una nueva opcion
   const addOption = (title, menuId) => {
     //crear id para option
     const menucito = data.menus[menuId];
@@ -59,7 +60,10 @@ function App(props) {
         [menuId]: menu,
       },
     });
+    updateDatos();
   };
+
+  //Funcion para agregar un submenu 
   const addMenu = (title) => {
     //Generar id para menu nuevo
     const newMenuId = uuid();
@@ -74,7 +78,12 @@ function App(props) {
         },
       },
     });
+    updateDatos();
   };
+
+
+  //Update de la variable definitiva a convertir en json para el bot
+  //********************************************************************************************************************* */
   const updateDatos = () => {
     const datos = [];
     data.menuIds.map((menuID, index) => {
@@ -85,7 +94,10 @@ function App(props) {
       setDatos(datos);
       return;
     });
+    console.log("Datos cargador y transformados a JSON - Objetos JSON")
+    console.log(JSON.stringify(datos))
   };
+  //********************************************************************************************************************** */
 
   //Funcion para drag and drop
   const onDragEnd = (result) => {
@@ -110,6 +122,7 @@ function App(props) {
         menuIds: data.menuIds,
       });
     }
+    updateDatos();
   };
 
   //delete Menu
