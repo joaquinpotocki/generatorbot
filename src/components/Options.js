@@ -16,7 +16,7 @@ const Options = ({ option , datos, menu, updateOption, handleDeleteOpcion}) => {
                     </div>
 
                     <OptionModal datos = {datos} option= {option} menu = {menu} updateOption={updateOption} ></OptionModal>
-                    <IconButton onClick={() => { handleDeleteOpcion(menu, option)  }}>
+                    <IconButton onClick={() => { handleDeleteOpcion(menu.id, option.id)  }}>
                         <ClearIcon />
                     </IconButton>
                 </div>
