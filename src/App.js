@@ -35,6 +35,8 @@ function App(props) {
   const updateOption = (menuIdRedirect, menuId, optionId) => {
     const option = data.menus[menuId].options[optionId.charCodeAt(0) - 65];
     option.menuIdRedirect = menuIdRedirect;
+    
+    updateDatos();
   };
 
   //Funcion para agregar una nueva opcion
