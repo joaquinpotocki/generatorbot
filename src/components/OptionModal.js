@@ -48,7 +48,7 @@ const OptionModal = ({ datos, option, menu, updateOption }) => {
             Al seleccionar la opcion {option.id}. {option.title}, ¿A cual de las
             siguientes consigna se debe redirigir?
           </Typography>
-          {datos.map((menucito) => {
+          {datos.menu.map((menucito) => {
             if (menucito.id !== menu.id) {
               return (
                 <RadioGroup value={value} onChange={handleChange}>

@@ -66,7 +66,7 @@ function App(props) {
     updateDatos();
   };
 
-  //Funcion para agregar un submenu 
+  //Funcion para agregar un submenu
   const addMenu = (title) => {
     //Generar id para menu nuevo
     const newMenuId = uuid();
@@ -84,16 +84,9 @@ function App(props) {
     updateDatos();
   };
 
-<<<<<<< HEAD
-=======
-
   //Update de la variable definitiva a convertir en json para el bot
   //********************************************************************************************************************* */
->>>>>>> 961bc584d489a2648a8a42560f0a182f69f0bdfe
   const updateDatos = () => {
-    console.log("empresa");
-    console.log(empresa);
-    console.log(empresaId);
     datos.empresa = empresa;
     datos.idEmpresa = empresaId;
     datos.menu = [];
@@ -104,13 +97,10 @@ function App(props) {
       datos.menu.push(subMenu);
 
       setDatos(datos);
-      console.log(datos.empresa);
-      console.log(datos.idEmpresa);
-      console.log(datos.menu);
       return;
     });
-    console.log("Datos cargador y transformados a JSON - Objetos JSON")
-    console.log(JSON.stringify(datos))
+    console.log("Datos cargador y transformados a JSON - Objetos JSON");
+    console.log(JSON.stringify(datos));
   };
   //********************************************************************************************************************** */
 
