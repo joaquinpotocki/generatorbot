@@ -25,7 +25,9 @@ const MenuTitle = ({ consigna, menuId, handleDeleteMenu, index }) => {
       {open ? (
         <InputBase
           value={newTitle}
-          onChange={(e) => setNewconsigna(e.target.value)}
+          onChange={(e) => {
+            setNewconsigna(e.target.value);
+          }}
           onBlur={handleBlur}
           autoFocus
           fullWidth
@@ -57,20 +59,19 @@ const useStyle = makeStyles((theme) => ({
   consigna: {
     //Creamos un objeto para diseniar con el hook
     display: "flex",
-    margin: theme.spacing(1, 1),
   },
   consignaText: {
     flexGrow: 1,
     fontSize: "1.2rem",
     fontWeight: "bold",
-    padding: theme.spacing(1, 1, 1, 2),
-    margin: theme.spacing(1, 1),
+    padding: theme.spacing(0, 1, 1, 2),
+    margin: theme.spacing(1, 0, 0, 0),
   },
   input: {
     fontSize: "1.2rem",
     fontWeight: "bold",
-    padding: theme.spacing(1, 1, 1, 2),
-    margin: theme.spacing(1, 1),
+    padding: theme.spacing(0.4, 0, 1, 3.8),
+    margin: theme.spacing(0.9),
 
     "$:focus": {
       background: "#ddd",

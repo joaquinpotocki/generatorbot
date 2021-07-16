@@ -17,6 +17,9 @@ function App(props) {
   const [data, setData] = useState(mockData);
   const [datos, setDatos] = useState(mockData2);
 
+  //Validations
+  const [error, setError] = useState(true);
+
   const empresaId = uuid();
 
   const empresa = props.location.state.empresa;
@@ -102,8 +105,8 @@ function App(props) {
       setDatos(datos);
       return;
     });
-    console.log("Transformacion a JSON")
-    console.log(JSON.stringify(datos))
+    console.log("Transformacion a JSON");
+    console.log(JSON.stringify(datos));
   };
   //********************************************************************************************************************** */
 
@@ -168,16 +171,17 @@ function App(props) {
   const downloadTxtFile = () => {
     const element = document.createElement("a");
     const varJson = JSON.stringify(datos);
-    const file = new Blob([varJson], { type: 'text/plain' });
+    const file = new Blob([varJson], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
     element.download = "myFileJson.json";
-    
-    element.click();
-  }
 
+    element.click();
+  };
 
   return (
-    <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu }}>
+    <ContextAPI.Provider
+      value={{ updateMenuTitle, addOption, addMenu, setError, error }}
+    >
       <DrawerLeft data={data} setData={setData}></DrawerLeft>
       <div className={classes.root}>
         <DragDropContext onDragEnd={onDragEnd}>
@@ -207,11 +211,9 @@ function App(props) {
                 <div>{provaided.placeholder}</div>;
                 <AddOptionsOrMenu type="menu" />
                 <div>
-                  
                   <button onClick={downloadTxtFile}>Download txt</button>
                 </div>
               </div>
-
             )}
           </Droppable>
         </DragDropContext>
