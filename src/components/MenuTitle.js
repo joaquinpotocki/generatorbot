@@ -9,10 +9,10 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { useContext, useState } from "react";
 import contextAPI from "../ContextAPI";
 
-const MenuTitle = ({ title, menuId, handleDeleteMenu, index }) => {
+const MenuTitle = ({ consigna, menuId, handleDeleteMenu, index }) => {
   const classes = useStyle(); //Iniciamos el hook
   const [open, setOpen] = useState(false);
-  const [newTitle, setNewtitle] = useState(title);
+  const [newTitle, setNewconsigna] = useState(consigna);
   const { updateMenuTitle } = useContext(contextAPI);
 
   const handleBlur = () => {
@@ -25,19 +25,19 @@ const MenuTitle = ({ title, menuId, handleDeleteMenu, index }) => {
       {open ? (
         <InputBase
           value={newTitle}
-          onChange={(e) => setNewtitle(e.target.value)}
+          onChange={(e) => setNewconsigna(e.target.value)}
           onBlur={handleBlur}
           autoFocus
           fullWidth
           inputProps={{ className: classes.input }}
         />
       ) : (
-        <div className={classes.title}>
+        <div className={classes.consigna}>
           <Typography
-            className={classes.titleText}
+            className={classes.consignaText}
             onClick={() => setOpen(true)}
           >
-            {index}. {title}
+            {index}. {consigna}
           </Typography>
           <IconButton
             onClick={() => {
@@ -54,12 +54,12 @@ const MenuTitle = ({ title, menuId, handleDeleteMenu, index }) => {
 
 //Importaremos un Hook
 const useStyle = makeStyles((theme) => ({
-  title: {
+  consigna: {
     //Creamos un objeto para diseniar con el hook
     display: "flex",
     margin: theme.spacing(1, 1),
   },
-  titleText: {
+  consignaText: {
     flexGrow: 1,
     fontSize: "1.2rem",
     fontWeight: "bold",

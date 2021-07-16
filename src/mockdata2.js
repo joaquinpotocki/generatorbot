@@ -1,5 +1,5 @@
 const mockData2 = {
-  idEmpresa: "",
+  empresaId: "",
   empresa: "",
   menu: [],
 };

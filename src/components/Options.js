@@ -10,7 +10,7 @@ const Options = ({ option, datos, menu, updateOption, handleDeleteOpcion }) => {
       <Paper className={classes.trellocard}>
         <div className={classes.flexin}>
           <div className={classes.growcito}>
-            {option.id}. {option.title}
+            {option.opcionId}. {option.opcion}
           </div>
 
           <OptionModal
@@ -21,7 +21,7 @@ const Options = ({ option, datos, menu, updateOption, handleDeleteOpcion }) => {
           ></OptionModal>
           <IconButton
             onClick={() => {
-              handleDeleteOpcion(menu.id, option.id);
+              handleDeleteOpcion(menu.menuId, option.opcionId);
             }}
           >
             <ClearIcon />

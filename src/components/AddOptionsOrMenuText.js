@@ -12,15 +12,15 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import contextAPI from "../ContextAPI";
 
 const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
-  const [title, setTitle] = useState("");
+  const [consigna, setTitle] = useState("");
   const classes = useStyle();
   const { addOption, addMenu } = useContext(contextAPI);
 
   const handleAddOptionOrMenu = () => {
     if (type === "option") {
-      addOption(title, menuId);
+      addOption(consigna, menuId);
     } else {
-      addMenu(title);
+      addMenu(consigna);
     }
     setTitle("");
   };
@@ -29,7 +29,7 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
       <Paper className={classes.card}>
         <InputBase
           multiline
-          value={title}
+          value={consigna}
           onChange={(e) => setTitle(e.target.value)}
           placeholder={
             type === "option" ? "Escriba la opcion" : "Escriba la consigna"

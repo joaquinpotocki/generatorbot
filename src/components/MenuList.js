@@ -14,24 +14,24 @@ const MenuList = ({
 }) => {
   const classes = useStyle(); //Iniciamos el hook
   return (
-    <Draggable draggableId={menu.id} index={index}>
+    <Draggable draggableId={menu.menuId} index={index}>
       {(provided) => (
         <div {...provided.draggableProps} ref={provided.innerRef}>
           <Paper className={classes.root} {...provided.dragHandleProps}>
             <CssBaseline />
             <MenuTitle
-              title={menu.title}
-              menuId={menu.id}
+              consigna={menu.consigna}
+              menuId={menu.menuId}
               handleDeleteMenu={handleDeleteMenu}
               index={index}
             />
-            <Droppable droppableId={menu.id}>
+            <Droppable droppableId={menu.menuId}>
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
-                  {menu.options.map((option, index) => (
+                  {menu.menuItem.map((option, index) => (
                     <Options
                       option={option}
-                      key={option.id}
+                      key={option.opcionId}
                       index={index}
                       datos={datos}
                       menu={menu}
@@ -44,7 +44,7 @@ const MenuList = ({
               )}
             </Droppable>
 
-            <AddOptionsOrMenu type="option" menuId={menu.id} />
+            <AddOptionsOrMenu type="option" menuId={menu.menuId} />
           </Paper>
         </div>
       )}

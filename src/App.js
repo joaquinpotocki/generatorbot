@@ -23,7 +23,7 @@ function App(props) {
 
   const updateMenuTitle = (updatedTitle, menuId) => {
     const menu = data.menus[menuId];
-    menu.title = updatedTitle;
+    menu.consigna = updatedTitle;
     setData({
       ...data, //deja todo el objeto igual
       menus: {
@@ -36,28 +36,28 @@ function App(props) {
 
   //update de los radios del modal
   const updateOption = (menuIdRedirect, menuId, optionId) => {
-    const option = data.menus[menuId].options[optionId.charCodeAt(0) - 65];
-    option.menuIdRedirect = menuIdRedirect;
+    const option = data.menus[menuId].menuItem[optionId.charCodeAt(0) - 65];
+    option.menuId = menuIdRedirect;
 
     updateDatos();
   };
 
   //Funcion para agregar una nueva opcion
-  const addOption = (title, menuId) => {
-    //crear id para option
+  const addOption = (consigna, menuId) => {
+    //crear menuId para option
     const menucito = data.menus[menuId];
 
-    const newOptionId = String.fromCharCode(menucito.options.length + 65); //creamos un id unico para la nueva opcion
+    const newOptionId = String.fromCharCode(menucito.menuItem.length + 65); //creamos un id unico para la nueva opcion
     //crear la opcion nueva
     const newOption = {
-      id: newOptionId,
-      title,
-      menuIdRedirect: "",
+      opcionId: newOptionId,
+      opcion: consigna,
+      menuId: "",
       guardar: false,
     };
     //anadir el newOption al array que tiene la lista
     const menu = data.menus[menuId];
-    menu.options = [...menu.options, newOption];
+    menu.menuItem = [...menu.menuItem, newOption];
     setData({
       ...data,
       menus: {
@@ -69,7 +69,7 @@ function App(props) {
   };
 
   //Funcion para agregar un submenu
-  const addMenu = (title) => {
+  const addMenu = (consigna) => {
     //Generar id para menu nuevo
     const newMenuId = uuid();
     setData({
@@ -77,9 +77,10 @@ function App(props) {
       menus: {
         ...data.menus,
         [newMenuId]: {
-          id: newMenuId,
-          title,
-          options: [],
+          menuId: newMenuId,
+          consigna,
+          finaliza:false,
+          menuItem: [],
         },
       },
     });
@@ -90,7 +91,7 @@ function App(props) {
   //********************************************************************************************************************* */
   const updateDatos = () => {
     datos.empresa = empresa;
-    datos.idEmpresa = empresaId;
+    datos.empresaId = empresaId;
     datos.menu = [];
 
     data.menuIds.map((menuID, index) => {
@@ -146,7 +147,7 @@ function App(props) {
   //delete Opcion
   const handleDeleteOpcion = (menuId, optionId) => {
     //Delete opcion
-    data.menus[menuId].options.splice(optionId.charCodeAt(0) - 65, 1);
+    data.menus[menuId].menuItem.splice(optionId.charCodeAt(0) - 65, 1);
     const menu = data.menus[menuId];
     setData({
       ...data,
@@ -156,8 +157,8 @@ function App(props) {
       },
     });
     //Actualizacion de Id
-    data.menus[menuId].options.map((option, index) => {
-      option.id = String.fromCharCode(index + 65);
+    data.menus[menuId].menuItem.map((option, index) => {
+      option.opcionId = String.fromCharCode(index + 65);
     });
     updateDatos();
   };
