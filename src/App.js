@@ -79,7 +79,7 @@ function App(props) {
         [newMenuId]: {
           menuId: newMenuId,
           consigna,
-          finaliza:false,
+          finaliza: false,
           menuItem: [],
         },
       },
@@ -102,6 +102,8 @@ function App(props) {
       setDatos(datos);
       return;
     });
+    console.log("Transformacion a JSON")
+    console.log(JSON.stringify(datos))
   };
   //********************************************************************************************************************** */
 
@@ -162,6 +164,18 @@ function App(props) {
     });
     updateDatos();
   };
+
+  const downloadTxtFile = () => {
+    const element = document.createElement("a");
+    const varJson = JSON.stringify(datos);
+    const file = new Blob([varJson], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = "myFileJson.json";
+    
+    element.click();
+  }
+
+
   return (
     <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu }}>
       <DrawerLeft data={data} setData={setData}></DrawerLeft>
@@ -192,7 +206,12 @@ function App(props) {
                 })}
                 <div>{provaided.placeholder}</div>;
                 <AddOptionsOrMenu type="menu" />
+                <div>
+                  
+                  <button onClick={downloadTxtFile}>Download txt</button>
+                </div>
               </div>
+
             )}
           </Droppable>
         </DragDropContext>
