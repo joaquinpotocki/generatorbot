@@ -55,7 +55,8 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
       <div className={classes.confirm}>
         <div className={classes.options}>
           <Button
-            className={classes.btnConfirm}
+            variant="contained"
+            color="primary"
             onClick={handleAddOptionOrMenu}
             disabled={error}
           >

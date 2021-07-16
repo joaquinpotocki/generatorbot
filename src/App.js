@@ -1,4 +1,11 @@
-import { makeStyles, Grid, Paper } from "@material-ui/core";
+import {
+  makeStyles,
+  Grid,
+  Paper,
+  Button,
+  IconButton,
+  Typography,
+} from "@material-ui/core";
 import AddOptionsOrMenu from "./components/AddOptionsOrMenu";
 import MenuList from "./components/MenuList";
 import DrawerLeft from "./components/DraweLeft";
@@ -9,6 +16,8 @@ import ContextAPI from "./ContextAPI";
 import { useState } from "react";
 import background_image from "./images/image.png";
 
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+
 //Library react-beautiful-dnd -> drag and drop
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
@@ -16,9 +25,6 @@ function App(props) {
   const classes = useStyle(); //Iniciamos el hook
   const [data, setData] = useState(mockData);
   const [datos, setDatos] = useState(mockData2);
-
-  //Validations
-  const [error, setError] = useState(true);
 
   const empresaId = uuid();
 
@@ -179,11 +185,25 @@ function App(props) {
   };
 
   return (
-    <ContextAPI.Provider
-      value={{ updateMenuTitle, addOption, addMenu, setError, error }}
-    >
+    <ContextAPI.Provider value={{ updateMenuTitle, addOption, addMenu }}>
       <DrawerLeft data={data} setData={setData}></DrawerLeft>
+
       <div className={classes.root}>
+        <div className={classes.downloadButton}>
+          <div className={classes.flexito}></div>
+          <Button
+            variant="contained"
+            color="secondary"
+            disableElevation
+            className={classes.button}
+            onClick={downloadTxtFile}
+          >
+            <ArrowDownwardIcon fontSize="Large" />
+            <Typography variant="h5" color="initial">
+              JSON
+            </Typography>
+          </Button>
+        </div>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="12345" type="list" direction="horizontal">
             {(provaided) => (
@@ -210,9 +230,6 @@ function App(props) {
                 })}
                 <div>{provaided.placeholder}</div>;
                 <AddOptionsOrMenu type="menu" />
-                <div>
-                  <button onClick={downloadTxtFile}>Download txt</button>
-                </div>
               </div>
             )}
           </Droppable>
@@ -233,8 +250,23 @@ const useStyle = makeStyles((theme) => ({
     backgroundSize: "contain",
   },
   container: {
-    padding: "3% 0 0 10%",
+    padding: "5% 0 0 10%",
     display: "flex",
+  },
+  downloadButton: {
+    display: "flex",
+    position: "fixed",
+    right: "0px",
+    top: "3%",
+  },
+  flexito: {
+    flexGrow: 1,
+  },
+  button: {
+    borderStartStartRadius: "50px",
+    borderBottomLeftRadius: "50px",
+    borderRadius: "0px",
+    padding: "10px",
   },
 }));
 
