@@ -38,7 +38,7 @@ function App(props) {
   const updateOption = (menuIdRedirect, menuId, optionId) => {
     const option = data.menus[menuId].options[optionId.charCodeAt(0) - 65];
     option.menuIdRedirect = menuIdRedirect;
-    
+
     updateDatos();
   };
 
@@ -101,8 +101,6 @@ function App(props) {
       setDatos(datos);
       return;
     });
-    console.log("Datos cargador y transformados a JSON - Objetos JSON");
-    console.log(JSON.stringify(datos));
   };
   //********************************************************************************************************************** */
 
@@ -149,14 +147,18 @@ function App(props) {
   const handleDeleteOpcion = (menuId, optionId) => {
     //Delete opcion
     data.menus[menuId].options.splice(optionId.charCodeAt(0) - 65, 1);
-
+    const menu = data.menus[menuId];
+    setData({
+      ...data,
+      menus: {
+        ...data.menus,
+        [menuId]: menu,
+      },
+    });
     //Actualizacion de Id
     data.menus[menuId].options.map((option, index) => {
       option.id = String.fromCharCode(index + 65);
-
-      return;
     });
-
     updateDatos();
   };
   return (
