@@ -56,7 +56,13 @@ const DrawerLeft = ({ data, setData }) => {
                           elevation={9}
                           className={classes.paper}
                         >
-                          <Typography>{index}</Typography>
+                          <Typography
+                            variant="h5"
+                            color=""
+                            className={classes.typography}
+                          >
+                            {index}
+                          </Typography>
                         </Paper>
                       </div>
                     )}
@@ -86,6 +92,11 @@ const useStyle = makeStyles((theme) => ({
   drawe: {
     background: "#ffffff1a",
     borderRadius: "10px",
+  },
+  typography: {
+    color: "grey",
+    textAlign: "center",
+    paddingTop: "35px",
   },
 }));
 
