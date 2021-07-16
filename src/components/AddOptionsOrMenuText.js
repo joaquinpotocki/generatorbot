@@ -8,13 +8,15 @@ import {
 import { alpha } from "@material-ui/core/styles";
 import { useContext, useState } from "react";
 import ClearIcon from "@material-ui/icons/Clear";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import contextAPI from "../ContextAPI";
 
 const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
   const [consigna, setTitle] = useState("");
   const classes = useStyle();
   const { addOption, addMenu } = useContext(contextAPI);
+
+  //Validations
+  const [error, setError] = useState(true);
 
   const handleAddOptionOrMenu = () => {
     if (type === "option") {
@@ -23,14 +25,27 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
       addMenu(consigna);
     }
     setTitle("");
+    setError(true);
   };
+
   return (
     <>
       <Paper className={classes.card}>
         <InputBase
           multiline
           value={consigna}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+            setTitle(e.target.value);
+            if (e.target.value.length === 0) {
+              console.log(consigna);
+              console.log(e.target.value);
+              setError(true);
+            } else {
+              console.log(consigna);
+
+              setError(false);
+            }
+          }}
           placeholder={
             type === "option" ? "Escriba la opcion" : "Escriba la consigna"
           }
@@ -40,8 +55,10 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
       <div className={classes.confirm}>
         <div className={classes.options}>
           <Button
-            className={classes.btnConfirm}
+            variant="contained"
+            color="primary"
             onClick={handleAddOptionOrMenu}
+            disabled={error}
           >
             {type === "option" ? "Agregar opcion" : "Agregar Consigna"}
           </Button>
