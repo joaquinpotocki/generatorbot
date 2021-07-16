@@ -29,7 +29,12 @@ const DrawerLeft = ({ data, setData }) => {
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Drawer variant="permanent">
+      <Drawer
+        variant="permanent"
+        classes={{
+          paper: classes.drawe,
+        }}
+      >
         <div className={classes.drawer}></div>
         <Droppable droppableId="consignas">
           {(droppableProvided) => (
@@ -77,6 +82,10 @@ const useStyle = makeStyles((theme) => ({
   drawer: {
     margin: "0 30px 0 0 ",
     padding: "0 60px ",
+  },
+  drawe: {
+    background: "#ffffff1a",
+    borderRadius: "10px",
   },
 }));
 
