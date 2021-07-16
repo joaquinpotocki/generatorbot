@@ -39,6 +39,7 @@ function App(props) {
     const option = data.menus[menuId].menuItem[optionId.charCodeAt(0) - 65];
     option.menuId = menuIdRedirect;
 
+    console.log("estoy dentro de update option justo antes de llamar a update datos")
     updateDatos();
   };
 
@@ -95,8 +96,7 @@ function App(props) {
     datos.menu = [];
 
     data.menuIds.map((menuID, index) => {
-      const subMenu = data.menus[menuID];
-
+      const subMenu = data.menus[menuID]; 
       datos.menu.push(subMenu);
 
       setDatos(datos);
@@ -201,6 +201,7 @@ function App(props) {
                       handleDeleteMenu={handleDeleteMenu}
                       datos={datos}
                       updateOption={updateOption}
+                      updateDatos={updateDatos}
                     />
                   );
                 })}

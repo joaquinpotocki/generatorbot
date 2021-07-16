@@ -11,6 +11,7 @@ const MenuList = ({
   handleDeleteMenu,
   datos,
   handleDeleteOpcion,
+  updateDatos
 }) => {
   const classes = useStyle(); //Iniciamos el hook
   return (
@@ -37,6 +38,7 @@ const MenuList = ({
                       menu={menu}
                       updateOption={updateOption}
                       handleDeleteOpcion={handleDeleteOpcion}
+                      updateDatos={updateDatos}
                     />
                   ))}
                   {provided.placeholder}

@@ -2,7 +2,7 @@ import { IconButton, makeStyles, Paper } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import OptionModal from "./OptionModal";
 
-const Options = ({ option, datos, menu, updateOption, handleDeleteOpcion }) => {
+const Options = ({ option, datos, menu, updateOption, handleDeleteOpcion, updateDatos }) => {
   const classes = useStyle(); //Iniciamos el hook
 
   return (
@@ -18,6 +18,7 @@ const Options = ({ option, datos, menu, updateOption, handleDeleteOpcion }) => {
             option={option}
             menu={menu}
             updateOption={updateOption}
+            updateDatos={updateDatos}
           ></OptionModal>
           <IconButton
             onClick={() => {

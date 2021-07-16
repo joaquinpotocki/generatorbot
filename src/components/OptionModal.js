@@ -14,22 +14,29 @@ import {
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
-const OptionModal = ({ datos, option, menu, updateOption }) => {
+const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
   //para el radio
   const handleChange = (event) => {
+
     setValue(event.target.value);
+
+    updateDatos();
   };
 
   const handleClickOpen = () => {
+    updateDatos();
     setOpen(true);
   };
 
   const handleClose = () => {
-    console.log(value);
+    console.log("estoy atras del updateDatos();");
     updateOption(value, menu.menuId, option.opcionId);
+    console.log("pase por arriba del updateDatos();")
+    updateDatos();
+
     setOpen(false);
   };
 
