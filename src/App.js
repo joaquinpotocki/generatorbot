@@ -113,8 +113,12 @@ function App(props) {
       setDatos(datos);
       return;
     });
+    console.log("**************");
+    console.log("Objeto de JS");
+    console.log(datos);
     console.log("Transformacion a JSON");
     console.log(JSON.stringify(datos));
+
   };
   //********************************************************************************************************************** */
 
