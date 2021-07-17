@@ -6,25 +6,27 @@ const DrawerLeft = ({ data, setData }) => {
 
   //Funcion para drag and drop
   const onDragEnd = (result) => {
-    const {
-      destination,
-      destination: { index: destIndex },
-      source: { index: sourceIndex },
-      draggableId,
-      type,
-    } = result;
-
-    if (!destination) {
-      return;
-    }
-    if (type === "DEFAULT") {
-      const newMenuIds = data.menuIds;
-      newMenuIds.splice(sourceIndex, 1);
-      newMenuIds.splice(destIndex, 0, draggableId);
-      setData({
-        ...data,
-        menuIds: data.menuIds,
-      });
+    //Buggati
+    if (result.destination) {
+      const {
+        destination,
+        destination: { index: destIndex },
+        source: { index: sourceIndex },
+        draggableId,
+        type,
+      } = result;
+      if (!destination) {
+        return;
+      }
+      if (type === "DEFAULT") {
+        const newMenuIds = data.menuIds;
+        newMenuIds.splice(sourceIndex, 1);
+        newMenuIds.splice(destIndex, 0, draggableId);
+        setData({
+          ...data,
+          menuIds: data.menuIds,
+        });
+      }
     }
   };
   return (
