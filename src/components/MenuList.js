@@ -47,7 +47,7 @@ const MenuList = ({
                 Finalizar
               </Typography>
 
-              <Switch onChange={handleSwitch} />
+              <Switch checked={menu.finaliza} onChange={handleSwitch} />
             </div>
             <Droppable droppableId={menu.menuId}>
               {(provided) => (
