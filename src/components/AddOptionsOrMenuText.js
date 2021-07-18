@@ -37,11 +37,8 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
           onChange={(e) => {
             setTitle(e.target.value);
             if (e.target.value.length === 0) {
-
               setError(true);
             } else {
-
-
               setError(false);
             }
           }}

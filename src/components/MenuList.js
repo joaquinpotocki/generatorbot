@@ -1,4 +1,11 @@
-import { Paper, CssBaseline, makeStyles } from "@material-ui/core";
+import {
+  Paper,
+  CssBaseline,
+  makeStyles,
+  Switch,
+  Typography,
+} from "@material-ui/core";
+import { useState } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import AddOptionsOrMenu from "./AddOptionsOrMenu";
 import MenuTitle from "./MenuTitle";
@@ -11,9 +18,18 @@ const MenuList = ({
   handleDeleteMenu,
   datos,
   handleDeleteOpcion,
-  updateDatos
+  updateDatos,
+  updateMenuFinaliza,
 }) => {
   const classes = useStyle(); //Iniciamos el hook
+
+  const [checked, setChecked] = useState(menu.finaliza);
+
+  const handleSwitch = () => {
+    const check = !checked;
+    setChecked(check);
+    updateMenuFinaliza(check, menu.menuId);
+  };
   return (
     <Draggable draggableId={menu.menuId} index={index}>
       {(provided) => (
@@ -26,6 +42,13 @@ const MenuList = ({
               handleDeleteMenu={handleDeleteMenu}
               index={index}
             />
+            <div className={classes.display}>
+              <Typography variant="h7" color="initial">
+                Finalizar
+              </Typography>
+
+              <Switch onChange={handleSwitch} />
+            </div>
             <Droppable droppableId={menu.menuId}>
               {(provided) => (
                 <div ref={provided.innerRef} {...provided.droppableProps}>
@@ -45,7 +68,6 @@ const MenuList = ({
                 </div>
               )}
             </Droppable>
-
             <AddOptionsOrMenu type="option" menuId={menu.menuId} />
           </Paper>
         </div>
@@ -62,6 +84,7 @@ const useStyle = makeStyles((theme) => ({
     background: "#ebecf0",
     margin: theme.spacing(0, 2, 2, 2),
   },
+  display: { textAlign: "end" },
 }));
 
 export default MenuList;

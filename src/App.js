@@ -42,6 +42,18 @@ function App(props) {
       },
     });
   };
+  const updateMenuFinaliza = (finalizar, menuId) => {
+    const menu = data.menus[menuId];
+    menu.finaliza = finalizar;
+    setData({
+      ...data, //deja todo el objeto igual
+      menus: {
+        //pero de los menus cambia lo siguiente
+        ...data.menus, //deja los menus iguales pero
+        [menuId]: menu, //de el primer menu dejame este menu
+      },
+    });
+  };
 
   //update de los radios del modal
   const updateOption = (menuIdRedirect, menuId, optionId) => {
@@ -80,25 +92,6 @@ function App(props) {
     updateDatos();
   };
 
-  //Funcion para agregar un submenu
-  const addMenu = (consigna) => {
-    //Generar id para menu nuevo
-    const newMenuId = uuid();
-    setData({
-      menuIds: [...data.menuIds, newMenuId],
-      menus: {
-        ...data.menus,
-        [newMenuId]: {
-          menuId: newMenuId,
-          consigna,
-          finaliza: false,
-          menuItem: [],
-        },
-      },
-    });
-    updateDatos();
-  };
-
   //Update de la variable definitiva a convertir en json para el bot
   //********************************************************************************************************************* */
   const updateDatos = () => {
@@ -118,9 +111,29 @@ function App(props) {
     console.log(datos);
     console.log("Transformacion a JSON");
     console.log(JSON.stringify(datos));
-
   };
   //********************************************************************************************************************** */
+  //Funcion para agregar un submenu
+  const addMenu = (consigna) => {
+    //Generar id para menu nuevo
+    const newMenuId = uuid();
+
+    setData({
+      menuIds: [...data.menuIds, newMenuId],
+      menus: {
+        ...data.menus,
+        [newMenuId]: {
+          menuId: newMenuId,
+          consigna,
+          finaliza: false,
+          menuItem: [],
+        },
+      },
+    });
+    console.log("addMENIU");
+    console.log(data);
+    console.log("addMENIU");
+  };
 
   //Funcion para drag and drop
   const onDragEnd = (result) => {
@@ -183,6 +196,8 @@ function App(props) {
   };
 
   const downloadTxtFile = () => {
+    updateDatos();
+
     const element = document.createElement("a");
     const varJson = JSON.stringify(datos);
     const file = new Blob([varJson], { type: "text/plain" });
@@ -224,17 +239,21 @@ function App(props) {
                   const menu = data.menus[menuID];
 
                   return (
-                    <MenuList
-                      index={index}
-                      menu={menu}
-                      key={menuID}
-                      index={index}
-                      handleDeleteOpcion={handleDeleteOpcion}
-                      handleDeleteMenu={handleDeleteMenu}
-                      datos={datos}
-                      updateOption={updateOption}
-                      updateDatos={updateDatos}
-                    />
+                    <>
+                      <MenuList
+                        index={index}
+                        menu={menu}
+                        key={menuID}
+                        index={index}
+                        handleDeleteOpcion={handleDeleteOpcion}
+                        handleDeleteMenu={handleDeleteMenu}
+                        datos={datos}
+                        updateOption={updateOption}
+                        updateDatos={updateDatos}
+                        updateMenuFinaliza={updateMenuFinaliza}
+                      />
+                      {updateDatos()}
+                    </>
                   );
                 })}
                 <div>{provaided.placeholder}</div>;
