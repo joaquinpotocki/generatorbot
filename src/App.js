@@ -52,7 +52,20 @@ function App(props) {
   const updateOption = (newOption, menuIdRedirect, menuId, optionId) => {
     const option = data.menus[menuId].menuItem[optionId.charCodeAt(0) - 65];
     option.menuId = menuIdRedirect;
+    console.log("DATAAAAAAA");
+    console.log(data);
+    console.log("newOption");
+    console.log(newOption);
     option.opcion = newOption;
+    setData({
+      ...data, //deja todo el objeto igual
+      menus: {
+        //pero de los menus cambia lo siguiente
+        ...data.menus, //deja los menus iguales pero
+        ...[menuId].menuItem, //de el primer menu dejame este menu
+        option: option, //de el primer menu dejame este menu
+      },
+    });
 
     console.log(
       "estoy dentro de update option justo antes de llamar a update datos"

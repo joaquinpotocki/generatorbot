@@ -22,7 +22,6 @@ const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
 
   //para el radio
   const handleChange = (event) => {
-
     setValue(event.target.value);
 
     updateDatos();
@@ -36,7 +35,7 @@ const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
   const handleClose = () => {
     console.log("estoy atras del updateDatos();");
     updateOption(valueOpcion, value, menu.menuId, option.opcionId);
-    console.log("pase por arriba del updateDatos();")
+    console.log("pase por arriba del updateDatos();");
     updateDatos();
 
     setOpen(false);
@@ -54,15 +53,14 @@ const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
         </DialogTitle>
         <DialogContent>
           <Typography>
-            Al seleccionar la opcion {option.opcionId}. {option.consigna}, ¿A cual de las
-            siguientes consigna se debe redirigir?
+            Al seleccionar la opcion {option.opcionId}. {option.consigna}, ¿A
+            cual de las siguientes consigna se debe redirigir?
           </Typography>
           <InputBase
             value={valueOpcion}
             onChange={(e) => {
               setValueOpcion(e.target.value);
-            }
-            }
+            }}
           />
           {datos.menu.map((menucito) => {
             if (menucito.menuId !== menu.menuId) {
