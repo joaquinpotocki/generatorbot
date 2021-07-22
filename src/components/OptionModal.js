@@ -11,12 +11,14 @@ import {
   Radio,
   RadioGroup,
   Typography,
+  InputBase,
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+  const [valueOpcion, setValueOpcion] = React.useState(option.opcion);
 
   //para el radio
   const handleChange = (event) => {
@@ -33,7 +35,7 @@ const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
 
   const handleClose = () => {
     console.log("estoy atras del updateDatos();");
-    updateOption(value, menu.menuId, option.opcionId);
+    updateOption(valueOpcion, value, menu.menuId, option.opcionId);
     console.log("pase por arriba del updateDatos();")
     updateDatos();
 
@@ -55,6 +57,13 @@ const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
             Al seleccionar la opcion {option.opcionId}. {option.consigna}, ¿A cual de las
             siguientes consigna se debe redirigir?
           </Typography>
+          <InputBase
+            value={valueOpcion}
+            onChange={(e) => {
+              setValueOpcion(e.target.value);
+            }
+            }
+          />
           {datos.menu.map((menucito) => {
             if (menucito.menuId !== menu.menuId) {
               return (
