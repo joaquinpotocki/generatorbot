@@ -49,9 +49,10 @@ function App(props) {
   };
 
   //update de los radios del modal
-  const updateOption = (menuIdRedirect, menuId, optionId) => {
+  const updateOption = (newOption, menuIdRedirect, menuId, optionId) => {
     const option = data.menus[menuId].menuItem[optionId.charCodeAt(0) - 65];
     option.menuId = menuIdRedirect;
+    option.opcion = newOption;
 
     console.log(
       "estoy dentro de update option justo antes de llamar a update datos"
