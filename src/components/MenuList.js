@@ -43,7 +43,7 @@ const MenuList = ({
               index={index}
             />
             <div className={classes.display}>
-              <Typography variant="h7" color="initial">
+              <Typography variant="" color="initial">
                 Finalizar
               </Typography>
 
