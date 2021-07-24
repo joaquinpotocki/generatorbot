@@ -48,7 +48,9 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
   return (
     <>
       <div className={classes.flexing}>
-        <Paper className={classes.card}>
+        <Paper
+          className={type === "option" ? classes.card : classes.cardConsigna}
+        >
           <InputBase
             multiline
             value={consigna}
@@ -114,13 +116,19 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
 const useStyle = makeStyles((theme) => ({
   card: {
     //Creamos un objeto para diseniar con el hook
-    width: "380px",
+    width: "880px",
+    margin: theme.spacing(1, 1, 1, 1),
+    paddingBotton: theme.spacing(4),
+  },
+  cardConsigna: {
+    //Creamos un objeto para diseniar con el hook
+    width: "630px",
     margin: theme.spacing(1, 1, 1, 1),
     paddingBotton: theme.spacing(4),
   },
   input: {
     margin: theme.spacing(1),
-    width: "250px",
+    width: "850px",
   },
   confirm: {
     display: "flex",

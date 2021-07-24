@@ -1,4 +1,4 @@
-import { makeStyles, Button, Typography } from "@material-ui/core";
+import { makeStyles, Button, Typography, Grid } from "@material-ui/core";
 import AddOptionsOrMenu from "./components/AddOptionsOrMenu";
 import MenuList from "./components/MenuList";
 import DrawerLeft from "./components/DraweLeft";
@@ -52,10 +52,6 @@ function App(props) {
   const updateOption = (newOption, menuIdRedirect, menuId, optionId) => {
     const option = data.menus[menuId].menuItem[optionId.charCodeAt(0) - 65];
     option.menuId = menuIdRedirect;
-    console.log("DATAAAAAAA");
-    console.log(data);
-    console.log("newOption");
-    console.log(newOption);
     option.opcion = newOption;
     setData({
       ...data, //deja todo el objeto igual
@@ -278,37 +274,47 @@ function App(props) {
           </Button>
         </div>
         <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="12345" type="list" direction="horizontal">
+          <Droppable droppableId="12345" type="list" direction="vertical">
             {(provaided) => (
-              <div
-                className={classes.container}
-                ref={provaided.innerRef}
-                {...provaided.droppableProps}
-              >
-                {data.menuIds.map((menuID, index) => {
-                  const menu = data.menus[menuID];
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <Grid container justifyContent="center" spacing={2}>
+                    <div
+                      className={classes.container}
+                      ref={provaided.innerRef}
+                      {...provaided.droppableProps}
+                    >
+                      {data.menuIds.map((menuID, index) => {
+                        const menu = data.menus[menuID];
 
-                  return (
-                    <>
-                      <MenuList
-                        index={index}
-                        menu={menu}
-                        key={menuID}
-                        index={index}
-                        handleDeleteOpcion={handleDeleteOpcion}
-                        handleDeleteMenu={handleDeleteMenu}
-                        datos={datos}
-                        updateOption={updateOption}
-                        updateDatos={updateDatos}
-                        updateMenuFinaliza={updateMenuFinaliza}
-                      />
-                      {updateDatos()}
-                    </>
-                  );
-                })}
-                <div>{provaided.placeholder}</div>;
-                <AddOptionsOrMenu type="menu" />
-              </div>
+                        return (
+                          <>
+                            <Grid item key={index}>
+                              <MenuList
+                                index={index}
+                                menu={menu}
+                                key={menuID}
+                                index={index}
+                                handleDeleteOpcion={handleDeleteOpcion}
+                                handleDeleteMenu={handleDeleteMenu}
+                                datos={datos}
+                                updateOption={updateOption}
+                                updateDatos={updateDatos}
+                                updateMenuFinaliza={updateMenuFinaliza}
+                              />
+                            </Grid>
+                            {updateDatos()}
+                          </>
+                        );
+                      })}
+                      <div>{provaided.placeholder}</div>;
+                      <div className={classes.padding}>
+                        <AddOptionsOrMenu type="menu" />
+                      </div>
+                    </div>
+                  </Grid>
+                </Grid>
+              </Grid>
             )}
           </Droppable>
         </DragDropContext>
@@ -322,14 +328,12 @@ const useStyle = makeStyles((theme) => ({
   root: {
     //Creamos un objeto para diseniar con el hook
     minHeight: "100vh",
-    overflowY: "auto",
+    overflow: "hidden",
     backgroundImage: `url(${background_image})`,
-    backgroundPosition: "center",
-    backgroundSize: "contain",
   },
   container: {
     padding: "5% 0 0 10%",
-    display: "flex",
+    //display: "flex",
   },
   downloadButton: {
     display: "flex",
@@ -345,6 +349,9 @@ const useStyle = makeStyles((theme) => ({
     borderBottomLeftRadius: "50px",
     borderRadius: "0px",
     padding: "10px",
+  },
+  padding: {
+    padding: "5% 1% 40% 1.6% ",
   },
 }));
 

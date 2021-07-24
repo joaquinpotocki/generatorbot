@@ -9,7 +9,7 @@ const AddOptionsOrMenu = ({ type, menuId }) => {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className={classes.root}>
+    <div className={type === "option" ? classes.root : classes.rootConsigna}>
       <Paper>
         <Collapse in={open}>
           <AddOptionsOrMenuText type={type} menuId={menuId} setOpen={setOpen} />
@@ -35,7 +35,11 @@ const AddOptionsOrMenu = ({ type, menuId }) => {
 const useStyle = makeStyles((theme) => ({
   root: {
     //Creamos un objeto para diseniar con el hook
-    width: "400px",
+    width: "1000px",
+  },
+  rootConsigna: {
+    //Creamos un objeto para diseniar con el hook
+    width: "750px",
   },
   addOptionsListText: {
     padding: theme.spacing(1, 1, 1, 2),

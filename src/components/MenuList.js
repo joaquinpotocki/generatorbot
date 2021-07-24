@@ -80,9 +80,9 @@ const MenuList = ({
 const useStyle = makeStyles((theme) => ({
   root: {
     //Creamos un objeto para diseniar con el hook
-    width: "400px",
+    width: "1000px",
     background: "#ebecf0",
-    margin: theme.spacing(0, 2, 2, 2),
+    margin: theme.spacing(2, 2, 2, 2),
   },
   display: { textAlign: "end" },
 }));
