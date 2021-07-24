@@ -12,10 +12,12 @@ import {
   RadioGroup,
   Typography,
   InputBase,
+  makeStyles,
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
+  const classes = useStyle();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const [valueOpcion, setValueOpcion] = React.useState(option.opcion);
@@ -48,30 +50,42 @@ const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
       </IconButton>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>
-          Opcion: {option.opcionId}. {option.opcion}
-        </DialogTitle>
-        <DialogContent>
-          <Typography>
-            Al seleccionar la opcion {option.opcionId}. {option.consigna}, ¿A
-            cual de las siguientes consigna se debe redirigir?
-          </Typography>
+        <DialogTitle className={classes.title}>
+          Opcion: {option.opcionId}.
           <InputBase
             value={valueOpcion}
             onChange={(e) => {
               setValueOpcion(e.target.value);
             }}
+            autoFocus
+            fullWidth
+
+            multiline
+            className={classes.input}
+
           />
+        </DialogTitle>
+        <DialogContent>
+          <Typography className={classes.contenido}>
+            Al seleccionar la opcion {option.opcionId}. ¿A
+            cual de las siguientes consigna se debe redirigir?
+          </Typography>
+          <Typography>
+            Consignas disponibles:
+          </Typography>
           {datos.menu.map((menucito) => {
             if (menucito.menuId !== menu.menuId) {
               return (
-                <RadioGroup value={value} onChange={handleChange}>
-                  <FormControlLabel
-                    value={menucito.menuId}
-                    control={<Radio />}
-                    label={menucito.consigna}
-                  />
-                </RadioGroup>
+
+                  <RadioGroup value={value} onChange={handleChange} >
+                    <FormControlLabel
+                      className={classes.radio}
+                      value={menucito.menuId}
+                      control={<Radio />}
+                      label={menucito.consigna}
+                    />
+                  </RadioGroup>
+
               );
             }
           })}
@@ -85,5 +99,19 @@ const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
     </div>
   );
 };
-
+//Importaremos un Hook
+const useStyle = makeStyles((theme) => ({
+  input: {
+    fontSize: "1.2rem",
+    fontWeight: "bold",
+    margin: theme.spacing(1),
+    padding: theme.spacing(0, 1, 1, 2),
+    width: "440px",
+    flexGrow: 1,
+  },
+  title: {
+    fontSize: "1.2rem",
+    display: "flex",
+  }
+}));
 export default OptionModal;
