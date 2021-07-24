@@ -68,7 +68,7 @@ const useStyle = makeStyles((theme) => ({
     margin: theme.spacing(1, 0, 0, 0),
   },
   input: {
-    fontSize: "1.2rem",
+    
     fontWeight: "bold",
     padding: theme.spacing(0.4, 0, 1, 3.8),
     margin: theme.spacing(0.9),
