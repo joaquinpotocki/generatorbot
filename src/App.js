@@ -301,6 +301,7 @@ function App(props) {
                                 updateOption={updateOption}
                                 updateDatos={updateDatos}
                                 updateMenuFinaliza={updateMenuFinaliza}
+                                data={data}
                               />
                             </Grid>
                             {updateDatos()}
