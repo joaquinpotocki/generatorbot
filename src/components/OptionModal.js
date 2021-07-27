@@ -17,8 +17,15 @@ import {
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
+const OptionModal = ({
+  datos,
+  option,
+  menu,
+  updateOption,
+  updateDatos,
+  data,
+}) => {
 
-const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
   const classes = useStyle();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
@@ -61,33 +68,28 @@ const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
             }}
             autoFocus
             fullWidth
-
             multiline
             className={classes.input}
-
           />
         </DialogTitle>
         <DialogContent>
           <Typography className={classes.contenido}>
-            Al seleccionar la opcion {option.opcionId}. ¿A
-            cual de las siguientes consigna se debe redirigir?
+            Al seleccionar la opcion {option.opcionId}. ¿A cual de las
+            siguientes consigna se debe redirigir?
           </Typography>
-          <Typography>
-            Consignas disponibles:
-          </Typography>
-          {datos.menu.map((menucito) => {
+          <Typography>Consignas disponibles:</Typography>
+          {data.menuIds.map((menuID, index) => {
+            const menucito = data.menus[menuID];
             if (menucito.menuId !== menu.menuId) {
               return (
-
-                  <RadioGroup value={value} onChange={handleChange} >
-                    <FormControlLabel
-                      className={classes.radio}
-                      value={menucito.menuId}
-                      control={<Radio />}
-                      label={menucito.consigna}
-                    />
-                  </RadioGroup>
-
+                <RadioGroup value={value} onChange={handleChange}>
+                  <FormControlLabel
+                    className={classes.radio}
+                    value={menucito.menuId}
+                    control={<Radio />}
+                    label={menucito.consigna}
+                  />
+                </RadioGroup>
               );
             }
           })}
@@ -114,7 +116,9 @@ const useStyle = makeStyles((theme) => ({
   title: {
     fontSize: "1.2rem",
     display: "flex",
-    
-  }
+
+
+  },
+
 }));
 export default OptionModal;

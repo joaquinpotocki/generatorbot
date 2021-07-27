@@ -20,6 +20,7 @@ const MenuList = ({
   handleDeleteOpcion,
   updateDatos,
   updateMenuFinaliza,
+  data,
 }) => {
   const classes = useStyle(); //Iniciamos el hook
 
@@ -62,6 +63,7 @@ const MenuList = ({
                       updateOption={updateOption}
                       handleDeleteOpcion={handleDeleteOpcion}
                       updateDatos={updateDatos}
+                      data={data}
                     />
                   ))}
                   {provided.placeholder}
