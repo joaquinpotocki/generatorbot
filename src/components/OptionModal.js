@@ -5,6 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+
 import {
   FormControlLabel,
   IconButton,
@@ -15,6 +16,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+
 
 const OptionModal = ({ datos, option, menu, updateOption, updateDatos }) => {
   const classes = useStyle();
@@ -112,6 +114,7 @@ const useStyle = makeStyles((theme) => ({
   title: {
     fontSize: "1.2rem",
     display: "flex",
+    
   }
 }));
 export default OptionModal;
