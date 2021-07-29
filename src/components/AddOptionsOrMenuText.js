@@ -116,7 +116,7 @@ const AddOptionsOrMenuText = ({ type, setOpen, menuId }) => {
 const useStyle = makeStyles((theme) => ({
   card: {
     //Creamos un objeto para diseniar con el hook
-    width: "880px",
+    width: "980px",
     margin: theme.spacing(1, 1, 1, 1),
     paddingBotton: theme.spacing(4),
   },
@@ -128,7 +128,7 @@ const useStyle = makeStyles((theme) => ({
   },
   input: {
     margin: theme.spacing(1),
-    width: "850px",
+    width: "950px",
   },
   confirm: {
     display: "flex",
